@@ -1,0 +1,10 @@
+services:
+  books-catalog:
+    build:
+      context: ../../apps/backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - BooksCatalogLoader__BooksFilePath=books.json

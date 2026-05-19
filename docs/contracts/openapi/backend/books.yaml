@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: Books Catalog API
+  version: 1.0.0
+  description: API управления каталогом книг.
+paths:
+  /api/v1/books:
+    get:
+      summary: Получить список книг
+      operationId: getBooks
+      tags:
+        - Books
+      responses:
+        "200":
+          description: Список книг
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookResponse"
+    post:
+      summary: Создать книгу
+      operationId: createBook
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBookRequest"
+      responses:
+        "201":
+          description: Книга создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookResponse"
+        "400":
+          description: Ошибка валидации
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+  /api/v1/books/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Идентификатор книги
+    get:
+      summary: Получить книгу по ID
+      operationId: getBookById
+      tags:
+        - Books
+      responses:
+        "200":
+          description: Книга найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookResponse"
+        "400":
+          description: Книга не найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+    put:
+      summary: Обновить книгу
+      operationId: updateBook
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBookRequest"
+      responses:
+        "200":
+          description: Книга обновлена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookResponse"
+        "400":
+          description: Ошибка валидации или книга не найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+    delete:
+      summary: Удалить книгу
+      operationId: deleteBook
+      tags:
+        - Books
+      responses:
+        "204":
+          description: Книга удалена
+        "400":
+          description: Книга не найдена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+components:
+  schemas:
+    BookResponse:
+      type: object
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор книги
+        title:
+          type: string
+          description: Название книги
+        authors:
+          type: array
+          items:
+            type: string
+          description: Список авторов
+          nullable: true
+        isbn:
+          type: string
+          description: Международный стандартный книжный номер
+          nullable: true
+        publisher:
+          type: string
+          description: Издательство
+          nullable: true
+        year:
+          type: integer
+          description: Год издания
+          nullable: true
+        country:
+          type: string
+          description: Страна издательства
+          nullable: true
+    CreateBookRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Название книги
+        authors:
+          type: array
+          items:
+            type: string
+          description: Список авторов
+          nullable: true
+        isbn:
+          type: string
+          description: Международный стандартный книжный номер
+          nullable: true
+        publisher:
+          type: string
+          description: Издательство
+          nullable: true
+        year:
+          type: integer
+          description: Год издания
+          nullable: true
+        country:
+          type: string
+          description: Страна издательства
+          nullable: true
+    UpdateBookRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Название книги
+        authors:
+          type: array
+          items:
+            type: string
+          description: Список авторов
+          nullable: true
+        isbn:
+          type: string
+          description: Международный стандартный книжный номер
+          nullable: true
+        publisher:
+          type: string
+          description: Издательство
+          nullable: true
+        year:
+          type: integer
+          description: Год издания
+          nullable: true
+        country:
+          type: string
+          description: Страна издательства
+          nullable: true
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
