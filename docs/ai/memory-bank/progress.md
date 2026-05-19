@@ -8,17 +8,17 @@
 - Создан workflow `create-prompt`.
 - Настроен `.gitignore` (Python + .NET).
 - Создана ветка `backend-api`.
-- Создан промт `01-backend-api.md` (шаблон).
 - Настроена система ADR: `docs/adr/`, `.clinerules/adr.md`, workflow `create-adr`.
-- Создан ADR-001: .NET для backend-сервиса.
+- Созданы ADR-001..006 (технологии, структура, contract-first, DDD, тесты, CI).
+- Написан промт `01-backend-api.md` для реализации backend-сервиса `BooksCatalog`.
 
 ## В работе
 
-- Реализация LangChain-агента.
+- Реализация backend-сервиса `BooksCatalog` по промту `01-backend-api.md`.
 
 ## Не начато
 
-- Выбор API-домена.
-- Реализация API-tools.
+- Реализация LangChain-агента.
+- Реализация API-tools для агента.
 - Тестирование (5 запросов).
 - Отчёт `report.md`.
