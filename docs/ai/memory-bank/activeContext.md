@@ -2,15 +2,16 @@
 
 ## Текущий этап
 
-Реализован Python AI-агент в `/apps/agent/`.
+Созданы bash-скрипты автоматизации запуска проекта.
 
 ## Что сделано в этой сессии
 
-- Убран сервис `ollama` из `docker-compose.yml`; Ollama теперь запускается на хосте
-- `OLLAMA_BASE_URL` в docker-compose изменён на `http://host.docker.internal:11434`
-- Обновлён `ADR-016`: Ollama вне docker-compose
-- Обновлён `README.md`: добавлен шаг запуска Ollama на хосте
-- Обновлены `homework/prompts/03-agent-adr.md` и `04-agent-implementation.md`
+- Создан `setup.sh`: проверка/запуск Ollama, скачивание модели, копирование `.env`, сборка Docker Compose
+- `setup.sh` принимает необязательный аргумент `$1` — URL Ollama (по умолчанию `http://localhost:11434`)
+- При передаче аргумента `OLLAMA_BASE_URL` прописывается в `apps/agent/.env`
+- Создан `run.sh`: валидация аргумента, запуск агента через docker compose
+- Оба скрипта исполняемые (`chmod +x`)
+- Обновлён `README.md`: добавлен раздел «Быстрый старт» с описанием параметра `setup.sh`
 
 ## Следующие шаги
 
