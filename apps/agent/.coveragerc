@@ -1,0 +1,8 @@
+[run]
+omit =
+    tests/*
+    .venv/*
+    setup.py
+
+[report]
+fail_under = 90

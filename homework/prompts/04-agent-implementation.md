@@ -10,7 +10,7 @@
 - Архитектурные решения: `docs/adr/README.md` (ADR-010..020).
 - API: `docs/contracts/openapi/backend/books.yaml` (5 операций: getBooks, getBookById, createBook, updateBook, deleteBook).
 - LLM: локальная Ollama, модель `qwen3.5:4b`.
-- Фреймворк: LangChain (Python 3.12).
+- Фреймворк: LangChain (Python 3.12), пакет `langchain_classic` для `AgentExecutor` и `create_tool_calling_agent`.
 - Зависимости: `pyproject.toml`.
 - Конфигурация: `.env` (не коммитится), `.env.example` (коммитится).
 
@@ -31,7 +31,7 @@
 ### Структура проекта (`/apps/agent/`)
 
 - `main.py` — точка входа, запуск из CLI: `python main.py "<запрос>"`.
-- `agent.py` — сборка агента (LLM + tools + системный промт).
+- `agent.py` — сборка агента: функция `build_agent(llm, tools) -> AgentExecutor`.
 - `tools/` — по одному файлу на tool: `get_books.py`, `get_book_by_id.py`, `create_book.py`, `update_book.py`, `delete_book.py`.
 - `prompts/system.md` — системный промт агента.
 - `pyproject.toml` — зависимости (основные + `[dev]` для тестов).
@@ -41,15 +41,17 @@
 
 ### LangChain Tools (ADR-015, ADR-017)
 
-- Каждая операция API — отдельный `@tool`-декоратор в отдельном файле.
+- Каждая операция API — отдельный файл с фабричной функцией `make_*_tool(backend_url: str)`.
+- Внутри фабрики — `@tool`-декоратор; `backend_url` передаётся через замыкание.
 - HTTP-клиент: `httpx` (sync).
-- Tool возвращает строку (JSON → str).
+- Tool возвращает строку (JSON → str); при HTTP-ошибке — `json.dumps({"error": ..., "status_code": ...})`.
 - Логировать вызов tool (имя операции, параметры) с уровнем `INFO` и ответ API с уровнем `DEBUG`.
 
 ### Агент (ADR-020)
 
-- Тип: `create_tool_calling_agent` + `AgentExecutor` (sync, `invoke`).
-- LLM: `ChatOllama(model="qwen3.5:4b", base_url=OLLAMA_BASE_URL)`.
+- Тип: `create_tool_calling_agent` + `AgentExecutor` из `langchain_classic.agents` (sync, `invoke`).
+- Интерфейс: `build_agent(llm: BaseChatModel, tools: list[BaseTool]) -> AgentExecutor` — LLM и tools передаются снаружи.
+- LLM создаётся в `main.py`: `ChatOllama(model="qwen3.5:4b", base_url=OLLAMA_BASE_URL)`.
 - Системный промт (`/apps/agent/prompts/system.md`): роль (оператор API книг), ограничения (только операции с книгами), правила вызова tool, формат ответа.
 - Контракт ответа (фиксированный текстовый формат):
 
@@ -62,7 +64,7 @@
 
 ### Логирование
 
-- Формат: структурные JSON-логи в одну строку через `python-json-logger` (`pythonjsonlogger.jsonlogger.JsonFormatter`).
+- Формат: структурные JSON-логи в одну строку через `python-json-logger` (`pythonjsonlogger.json.JsonFormatter`).
 - Настроить в `main.py`: уровень `INFO` по умолчанию, каждая запись — одна строка JSON.
 - Tools: `INFO` — вызов (поля `tool`, `params`); `DEBUG` — ответ API (поле `response`).
 - Агент: `INFO` — входящий запрос (поле `query`); `INFO` — итоговый ответ (поле `answer`).
@@ -71,8 +73,8 @@
 ### Тесты (ADR-012, ADR-018, ADR-019)
 
 - Фреймворк: `pytest`.
-- Unit-тесты: каждый tool тестируется с мок-HTTP через `pytest-httpx`.
-- Integration-тесты: агент тестируется с `FakeListChatModel` + `pytest-httpx` (без реального Ollama и backend).
+- Unit-тесты: каждый tool тестируется с мок-HTTP через `pytest-httpx`; отдельный файл `tests/unit/test_main.py` для покрытия `main.py`.
+- Integration-тесты: агент тестируется с кастомным `FakeChatModelWithTools(BaseChatModel)` — наследник `BaseChatModel` с переопределённым `bind_tools(return self)` и `_generate`. `FakeListChatModel` не подходит — не реализует `bind_tools`.
 - Минимальный code coverage: 90%.
 - Папка: `/apps/agent/tests/`.
 
@@ -87,9 +89,9 @@
 ### Docker Compose (ADR-016)
 
 - Дополнить `infrastructure/docker-compose/docker-compose.yml`:
-  - Сервис `ollama`: образ `ollama/ollama`, CPU-only, при старте выполняет `ollama pull qwen3.5:4b`.
+  - Сервис `ollama`: образ `ollama/ollama`, CPU-only, volume `ollama_data:/root/.ollama` (кэш модели между перезапусками), при старте выполняет `ollama pull qwen3.5:4b`.
   - Сервис `agent`: one-shot, собирается из `/apps/agent/Dockerfile`, зависит от `ollama` и `books-catalog`.
-- `Dockerfile` агента: `/apps/agent/Dockerfile`.
+- `Dockerfile` агента: `/apps/agent/Dockerfile`, базовый образ `python:3.12-slim`.
 
 ### README
 

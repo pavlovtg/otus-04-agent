@@ -2,17 +2,22 @@
 
 ## Текущий этап
 
-Зафиксированы архитектурные решения для AI-агента (ADR-010..016), обновлён ADR-005.
+Реализован Python AI-агент в `/apps/agent/`.
 
 ## Что сделано в этой сессии
 
-- Создан и заполнен промт `homework/prompts/04-agent-implementation.md`
-- Дополнен `homework/prompts/03-agent-adr.md`: добавлены ADR-017..020
-- Созданы ADR-017..020 в `docs/adr/`, обновлён индекс `docs/adr/README.md`
+- Создана структура `/apps/agent/`: `main.py`, `agent.py`, `tools/`, `prompts/`, `tests/`
+- Реализованы 5 LangChain Tools (фабричный паттерн `make_*_tool(backend_url)`)
+- Реализован `agent.py`: `build_agent(llm, tools) -> AgentExecutor` через `langchain_classic`
+- Реализован `main.py`: CLI, JSON-логирование, обработка ошибок
+- Написаны тесты: 12 unit + 4 integration + 4 main = 20 тестов, coverage 99.31%
+- Настроен GitHub Actions CI (`.github/workflows/agent.yml`)
+- Дополнен `docker-compose.yml`: сервисы `ollama` и `agent`
+- Дополнен корневой `README.md`: раздел «Агент» с инструкцией и примерами
 
 ## Следующие шаги
 
-- Выполнить промт `04-agent-implementation.md`: реализовать Python AI-агент в `/apps/agent/`
+- Нет
 
 ## Открытые вопросы
 
