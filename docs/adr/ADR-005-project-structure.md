@@ -7,5 +7,6 @@
   - `/apps/backend/Backend.slnx` — solution backend.
   - `/apps/backend/src/` — исходный код backend-сервиса.
   - `/apps/backend/tests/` — тесты backend-сервиса.
+  - `/apps/agent/` — домен AI-агента.
   - `/infrastructure/docker-compose/` — файлы для развёртывания через docker-compose.
   - `/docs/contracts/openapi/` — OpenAPI-спецификации, разделённые по доменам и сервисам.

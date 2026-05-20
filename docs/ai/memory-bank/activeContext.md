@@ -2,20 +2,24 @@
 
 ## Текущий этап
 
-Реорганизация ADR: code style перенесён в ADR-001..003, остальные сдвинуты на +3.
+Зафиксированы архитектурные решения для AI-агента (ADR-010..016), обновлён ADR-005.
 
 ## Что сделано в этой сессии
 
-- Созданы ADR-001 (C# code style), ADR-002 (Markdown code style), ADR-003 (Python code style)
-- Существующие ADR переименованы: ADR-001..006 → ADR-004..009
+- Обновлён ADR-005: добавлен `/apps/agent/` — домен AI-агента
+- Созданы ADR-010..016:
+  - ADR-010: Python для AI-агента
+  - ADR-011: LangChain как фреймворк агента
+  - ADR-012: Стратегия тестирования агента (pytest, coverage ≥ 90%)
+  - ADR-013: CI для агента (отдельный GitHub Actions workflow)
+  - ADR-014: LLM-провайдер — Ollama + qwen3.5:4b
+  - ADR-015: Интеграция с API backend через LangChain Tools
+  - ADR-016: Ollama в docker-compose
 - Обновлён индекс `docs/adr/README.md`
-- Удалены `docs/code-style/csharp.md`, `markdown.md`, `python.md` и папка `docs/code-style/`
-- Удалены `.clinerules/csharp-code-style.md`, `markdown-code-style.md`, `python-code-style.md`
-- Обновлены промты: `00-init-repository.md`, `01-backend-adr.md`, `02-backend-api.md`
 
 ## Следующие шаги
 
-- Реализовать Python AI-агент на LangChain, использующий HTTP API сервиса книг
+- Реализовать Python AI-агент на LangChain в `/apps/agent/`
 
 ## Открытые вопросы
 

@@ -3,16 +3,23 @@
 ## Сделано
 
 - Инициализирован репозиторий, настроена структура проекта
-- Созданы ADR-001..009:
+- Созданы ADR-001..016:
   - ADR-001: Code style для C#
   - ADR-002: Code style для Markdown
   - ADR-003: Code style для Python
   - ADR-004: .NET для backend-сервиса
-  - ADR-005: Структура папок репозитория
+  - ADR-005: Структура папок репозитория (включая `/apps/agent/`)
   - ADR-006: Contract-first с OpenAPI v3
   - ADR-007: Domain Driven Design для backend-сервиса
   - ADR-008: Стратегия тестирования backend-сервиса
   - ADR-009: CI через GitHub Actions
+  - ADR-010: Python для AI-агента
+  - ADR-011: LangChain как фреймворк агента
+  - ADR-012: Стратегия тестирования агента
+  - ADR-013: CI для агента
+  - ADR-014: LLM-провайдер агента
+  - ADR-015: Интеграция с API backend через LangChain Tools
+  - ADR-016: Ollama в docker-compose
 - Создана OpenAPI спецификация `books.yaml`
 - Реализован backend-сервис `BooksCatalog` (.NET 10, DDD):
   - Domain, Application, Infrastructure, Adapters слои

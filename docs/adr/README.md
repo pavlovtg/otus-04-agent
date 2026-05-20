@@ -9,3 +9,10 @@
 - [ADR-007](ADR-007-ddd-backend.md): Domain Driven Design для backend-сервиса
 - [ADR-008](ADR-008-testing-strategy.md): Стратегия тестирования backend-сервиса
 - [ADR-009](ADR-009-ci-github-actions.md): CI через GitHub Actions
+- [ADR-010](ADR-010-python-agent.md): Python для AI-агента
+- [ADR-011](ADR-011-langchain-framework.md): LangChain как фреймворк агента
+- [ADR-012](ADR-012-agent-testing-strategy.md): Стратегия тестирования агента
+- [ADR-013](ADR-013-agent-ci.md): CI для агента
+- [ADR-014](ADR-014-llm-provider.md): LLM-провайдер агента
+- [ADR-015](ADR-015-backend-api-tools.md): Интеграция с API backend через LangChain Tools
+- [ADR-016](ADR-016-ollama-docker-compose.md): Ollama в docker-compose
