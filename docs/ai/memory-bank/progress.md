@@ -20,7 +20,7 @@
   - 20 тестов (unit + integration), coverage 99.31%
   - GitHub Actions CI (`.github/workflows/agent.yml`)
   - Dockerfile агента (`python:3.12-slim`)
-  - docker-compose: сервисы `ollama` и `agent`
+  - docker-compose: сервис `agent` (Ollama запускается на хосте)
   - README: раздел «Агент» с инструкцией и примерами
 
 ## В работе

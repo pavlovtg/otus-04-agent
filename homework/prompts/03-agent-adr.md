@@ -50,10 +50,9 @@
 
 - Каждая операция API backend (get/create/update/delete) реализуется отдельным LangChain Tool.
 
-### ADR-016: Ollama в docker-compose
+### ADR-016: Ollama вне docker-compose
 
-- Ollama запускается как отдельный сервис в docker-compose.
-- Модель `qwen3.5:4b` загружается через `ollama pull` при старте контейнера.
+- Ollama запускается на хосте (не в docker-compose); URL передаётся агенту через переменную окружения `OLLAMA_BASE_URL` (в docker-compose — `http://host.docker.internal:11434`).
 
 ### ADR-017: httpx как HTTP-клиент агента
 

@@ -9,25 +9,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - BooksCatalogLoader__BooksFilePath=books.json
 
-  ollama:
-    image: ollama/ollama
-    volumes:
-      - ollama_data:/root/.ollama
-    ports:
-      - "11434:11434"
-    entrypoint: >
-      /bin/sh -c "ollama serve & sleep 5 && ollama pull qwen3.5:4b && wait"
-
   agent:
     build:
       context: ../../apps/agent
       dockerfile: Dockerfile
     environment:
       - BACKEND_URL=http://books-catalog:5000
-      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
     depends_on:
-      - ollama
       - books-catalog
-
-volumes:
-  ollama_data:

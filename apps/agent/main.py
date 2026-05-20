@@ -20,7 +20,8 @@ def _setup_logging() -> None:
     """Настроить структурное JSON-логирование."""
     handler = logging.StreamHandler()
     formatter = pythonjson.JsonFormatter(
-        fmt="%(asctime)s %(levelname)s %(name)s %(message)s"
+        fmt="%(asctime)s %(levelname)s %(name)s %(message)s",
+        json_ensure_ascii=False,
     )
     handler.setFormatter(formatter)
     root = logging.getLogger()

@@ -5,8 +5,18 @@
 ## Требования
 
 - [Docker](https://www.docker.com/) и Docker Compose
+- [Ollama](https://ollama.com/) — запущена локально на хосте
 
 ## Запуск
+
+1. Запустить Ollama и загрузить модель:
+
+```bash
+ollama pull qwen3.5:4b
+ollama serve
+```
+
+2. Запустить сервисы:
 
 ```bash
 cd infrastructure/docker-compose

@@ -6,14 +6,11 @@
 
 ## Что сделано в этой сессии
 
-- Создана структура `/apps/agent/`: `main.py`, `agent.py`, `tools/`, `prompts/`, `tests/`
-- Реализованы 5 LangChain Tools (фабричный паттерн `make_*_tool(backend_url)`)
-- Реализован `agent.py`: `build_agent(llm, tools) -> AgentExecutor` через `langchain_classic`
-- Реализован `main.py`: CLI, JSON-логирование, обработка ошибок
-- Написаны тесты: 12 unit + 4 integration + 4 main = 20 тестов, coverage 99.31%
-- Настроен GitHub Actions CI (`.github/workflows/agent.yml`)
-- Дополнен `docker-compose.yml`: сервисы `ollama` и `agent`
-- Дополнен корневой `README.md`: раздел «Агент» с инструкцией и примерами
+- Убран сервис `ollama` из `docker-compose.yml`; Ollama теперь запускается на хосте
+- `OLLAMA_BASE_URL` в docker-compose изменён на `http://host.docker.internal:11434`
+- Обновлён `ADR-016`: Ollama вне docker-compose
+- Обновлён `README.md`: добавлен шаг запуска Ollama на хосте
+- Обновлены `homework/prompts/03-agent-adr.md` и `04-agent-implementation.md`
 
 ## Следующие шаги
 

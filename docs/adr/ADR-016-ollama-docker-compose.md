@@ -1,4 +1,4 @@
-# ADR-016: Ollama в docker-compose
+# ADR-016: Ollama вне docker-compose
 
 - **Контекст**: необходимо определить способ запуска Ollama в инфраструктуре проекта.
-- **Решение**: Ollama запускается как отдельный сервис в docker-compose; модель `qwen3.5:4b` загружается через `ollama pull` при старте контейнера.
+- **Решение**: Ollama запускается на хосте (не в docker-compose); URL передаётся агенту через переменную окружения `OLLAMA_BASE_URL` (в docker-compose — `http://host.docker.internal:11434`).

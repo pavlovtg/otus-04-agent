@@ -65,7 +65,7 @@
 ### Логирование
 
 - Формат: структурные JSON-логи в одну строку через `python-json-logger` (`pythonjsonlogger.json.JsonFormatter`).
-- Настроить в `main.py`: уровень `INFO` по умолчанию, каждая запись — одна строка JSON.
+- Настроить в `main.py`: уровень `INFO` по умолчанию, каждая запись — одна строка JSON; `JsonFormatter` создаётся с `json_ensure_ascii=False` для корректного вывода Unicode (кириллица без эскейпинга).
 - Tools: `INFO` — вызов (поля `tool`, `params`); `DEBUG` — ответ API (поле `response`).
 - Агент: `INFO` — входящий запрос (поле `query`); `INFO` — итоговый ответ (поле `answer`).
 - Ошибки: перехватывать исключения в `main.py`, логировать с уровнем `ERROR` (поле `error`), выводить контракт ответа с `Status: error`.
@@ -89,8 +89,8 @@
 ### Docker Compose (ADR-016)
 
 - Дополнить `infrastructure/docker-compose/docker-compose.yml`:
-  - Сервис `ollama`: образ `ollama/ollama`, CPU-only, volume `ollama_data:/root/.ollama` (кэш модели между перезапусками), при старте выполняет `ollama pull qwen3.5:4b`.
-  - Сервис `agent`: one-shot, собирается из `/apps/agent/Dockerfile`, зависит от `ollama` и `books-catalog`.
+  - Сервис `agent`: one-shot, собирается из `/apps/agent/Dockerfile`, зависит от `books-catalog`; `OLLAMA_BASE_URL=http://host.docker.internal:11434`.
+  - Ollama в docker-compose **не запускается** — она должна быть запущена на хосте.
 - `Dockerfile` агента: `/apps/agent/Dockerfile`, базовый образ `python:3.12-slim`.
 
 ### README
