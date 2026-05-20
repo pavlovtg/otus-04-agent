@@ -89,7 +89,9 @@
 ### Docker Compose (ADR-016)
 
 - Дополнить `infrastructure/docker-compose/docker-compose.yml`:
-  - Сервис `agent`: one-shot, собирается из `/apps/agent/Dockerfile`, зависит от `books-catalog`; `OLLAMA_BASE_URL=http://host.docker.internal:11434`.
+  - Имя проекта: `name: otus-04-agent`.
+  - Сервис `books-catalog`: `container_name: books-catalog`.
+  - Сервис `agent`: one-shot, `container_name: agent`, собирается из `/apps/agent/Dockerfile`, зависит от `books-catalog`; `OLLAMA_BASE_URL=http://host.docker.internal:11434`.
   - Ollama в docker-compose **не запускается** — она должна быть запущена на хосте.
 - `Dockerfile` агента: `/apps/agent/Dockerfile`, базовый образ `python:3.12-slim`.
 
@@ -97,7 +99,7 @@
 
 - Дополнить корневой `README.md`:
   - Раздел «Агент»: как настроить `.env` (скопировать `.env.example`, заполнить `BACKEND_URL` и `OLLAMA_BASE_URL`).
-  - Запуск агента через docker compose: `docker compose run --rm agent "запрос пользователя"`.
+  - Запуск агента через docker compose: `docker compose -f infrastructure/docker-compose/docker-compose.yml run --rm agent "запрос пользователя"`.
   - Запуск агента локально: `cd apps/agent && python main.py "<запрос>"`.
   - Примеры запросов (минимум 3).
 
