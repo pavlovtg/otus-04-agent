@@ -16,3 +16,7 @@
 - [ADR-014](ADR-014-llm-provider.md): LLM-провайдер агента
 - [ADR-015](ADR-015-backend-api-tools.md): Интеграция с API backend через LangChain Tools
 - [ADR-016](ADR-016-ollama-docker-compose.md): Ollama в docker-compose
+- [ADR-017](ADR-017-httpx-http-client.md): httpx как HTTP-клиент агента
+- [ADR-018](ADR-018-pytest-httpx.md): pytest-httpx для мока HTTP в тестах агента
+- [ADR-019](ADR-019-fake-list-chat-model.md): FakeListChatModel для изоляции LLM в тестах агента
+- [ADR-020](ADR-020-agent-sync-mode.md): Sync-режим агента

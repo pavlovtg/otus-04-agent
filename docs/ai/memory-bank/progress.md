@@ -20,6 +20,10 @@
   - ADR-014: LLM-провайдер агента
   - ADR-015: Интеграция с API backend через LangChain Tools
   - ADR-016: Ollama в docker-compose
+  - ADR-017: httpx как HTTP-клиент агента
+  - ADR-018: pytest-httpx для мока HTTP в тестах агента
+  - ADR-019: FakeListChatModel для изоляции LLM в тестах агента
+  - ADR-020: Sync-режим агента
 - Создана OpenAPI спецификация `books.yaml`
 - Реализован backend-сервис `BooksCatalog` (.NET 10, DDD):
   - Domain, Application, Infrastructure, Adapters слои
@@ -37,4 +41,4 @@
 
 ## Не начато
 
-- Python AI-агент на LangChain
+- Реализовать Python AI-агент на LangChain в `/apps/agent/` (промт `04-agent-implementation.md`)

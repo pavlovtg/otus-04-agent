@@ -54,3 +54,19 @@
 
 - Ollama запускается как отдельный сервис в docker-compose.
 - Модель `qwen3.5:4b` загружается через `ollama pull` при старте контейнера.
+
+### ADR-017: httpx как HTTP-клиент агента
+
+- HTTP-клиент для вызова API backend из LangChain Tools — `httpx` (sync).
+
+### ADR-018: pytest-httpx для мока HTTP в тестах агента
+
+- Мок HTTP-запросов в тестах агента реализуется через `pytest-httpx`.
+
+### ADR-019: FakeListChatModel для изоляции LLM в тестах агента
+
+- LLM в integration-тестах агента заменяется на `FakeListChatModel` из `langchain_core`.
+
+### ADR-020: Sync-режим агента
+
+- Агент реализуется в sync-режиме через `AgentExecutor.invoke` (без async).
