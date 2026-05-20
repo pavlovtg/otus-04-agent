@@ -16,7 +16,7 @@
 
 ## Требования
 
-### ADR-002: Структура папок репозитория
+### ADR-005: Структура папок репозитория
 
 - `/apps` — приложения и домены.
 - `/apps/backend/` — домен backend-сервиса.
@@ -26,24 +26,24 @@
 - `/infrastructure/docker-compose/` — файлы для развёртывания через docker-compose.
 - `/docs/contracts/openapi/` — OpenAPI-спецификации, разделённые по доменам и сервисам.
 
-### ADR-003: Contract-first с OpenAPI v3
+### ADR-006: Contract-first с OpenAPI v3
 
 - Подход: contract-first — сначала создаётся OpenAPI v3 спецификация в формате YAML, затем реализуется сервис.
 - Спецификации хранятся в `/docs/contracts/openapi/`.
 
-### ADR-004: Domain Driven Design для backend-сервиса
+### ADR-007: Domain Driven Design для backend-сервиса
 
 - Архитектура: DDD с разделением на слои внутри одного .csproj.
 - Слои: `Domain/`, `Application/`, `Infrastructure/`, `Adapters/`.
 
-### ADR-005: Стратегия тестирования backend-сервиса
+### ADR-008: Стратегия тестирования backend-сервиса
 
 - Виды тестов: unit (domain/application), integration (HTTP через `WebApplicationFactory`), microservice (`WebApplicationFactory` без моков внешних зависимостей).
 - Минимальный code coverage: 90%; CI падает при нарушении.
 - Фреймворк: xUnit.
 - Нейминг тестового проекта: `<ProjectName>.Tests.csproj`, где `<ProjectName>` — название тестируемого проекта.
 
-### ADR-006: CI через GitHub Actions
+### ADR-009: CI через GitHub Actions
 
 - Один job: build → test → coverage check (≥ 90%).
 - Триггеры: `push` и `pull_request`.

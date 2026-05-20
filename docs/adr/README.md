@@ -1,8 +1,22 @@
 # ADR Index
 
-- [ADR-001](ADR-001-dotnet-backend.md): .NET для backend-сервиса
-- [ADR-002](ADR-002-project-structure.md): Структура папок репозитория
-- [ADR-003](ADR-003-contract-first-openapi.md): Contract-first с OpenAPI v3
-- [ADR-004](ADR-004-ddd-backend.md): Domain Driven Design для backend-сервиса
-- [ADR-005](ADR-005-testing-strategy.md): Стратегия тестирования backend-сервиса
-- [ADR-006](ADR-006-ci-github-actions.md): CI через GitHub Actions
+- [ADR-001](ADR-001-csharp-code-style.md): Code style для C#
+- [ADR-002](ADR-002-markdown-code-style.md): Code style для Markdown
+- [ADR-003](ADR-003-python-code-style.md): Code style для Python
+- [ADR-004](ADR-004-dotnet-backend.md): .NET для backend-сервиса
+- [ADR-005](ADR-005-project-structure.md): Структура папок репозитория
+- [ADR-006](ADR-006-contract-first-openapi.md): Contract-first с OpenAPI v3
+- [ADR-007](ADR-007-ddd-backend.md): Domain Driven Design для backend-сервиса
+- [ADR-008](ADR-008-testing-strategy.md): Стратегия тестирования backend-сервиса
+- [ADR-009](ADR-009-ci-github-actions.md): CI через GitHub Actions
+- [ADR-010](ADR-010-python-agent.md): Python для AI-агента
+- [ADR-011](ADR-011-langchain-framework.md): LangChain как фреймворк агента
+- [ADR-012](ADR-012-agent-testing-strategy.md): Стратегия тестирования агента
+- [ADR-013](ADR-013-agent-ci.md): CI для агента
+- [ADR-014](ADR-014-llm-provider.md): LLM-провайдер агента
+- [ADR-015](ADR-015-backend-api-tools.md): Интеграция с API backend через LangChain Tools
+- [ADR-016](ADR-016-ollama-docker-compose.md): Ollama в docker-compose
+- [ADR-017](ADR-017-httpx-http-client.md): httpx как HTTP-клиент агента
+- [ADR-018](ADR-018-pytest-httpx.md): pytest-httpx для мока HTTP в тестах агента
+- [ADR-019](ADR-019-fake-list-chat-model.md): FakeListChatModel для изоляции LLM в тестах агента
+- [ADR-020](ADR-020-agent-sync-mode.md): Sync-режим агента

@@ -2,28 +2,20 @@
 
 ## Текущий этап
 
-Backend API сервиса книг реализован полностью.
+Созданы bash-скрипты автоматизации запуска проекта.
 
 ## Что сделано в этой сессии
 
-- Создана OpenAPI спецификация `/docs/contracts/openapi/backend/books.yaml`
-- Реализован .NET 10 сервис `BooksCatalog` по DDD:
-  - `Domain/`: `Book`, `IBookRepository`, `BookNotFoundException`, `BookValidationException`
-  - `Application/`: `BookService`, `BookDto`, `CreateBookDto`, `UpdateBookDto`
-  - `Infrastructure/`: `BooksCatalogLoader`, `BooksCatalogLoaderOptions`, `InternalControllerFeatureProvider`
-  - `Adapters/Http/`: `BooksController`, `BookRequest`, `BookResponse`
-  - `Adapters/Persistence/`: `InMemoryBookRepository`
-- Написаны тесты (20 штук, все проходят):
-  - Unit: `BookTests` (Domain)
-  - Integration: `BooksControllerTests`
-  - Microservice: `BooksCrudTests` (полный CRUD)
-- Создан `Dockerfile` в `/apps/backend/`
-- Создан `docker-compose.yml` в `/infrastructure/docker-compose/`
-- Создан CI workflow `.github/workflows/backend.yml`
+- Создан `setup.sh`: проверка/запуск Ollama, скачивание модели, копирование `.env`, сборка Docker Compose
+- `setup.sh` принимает необязательный аргумент `$1` — URL Ollama (по умолчанию `http://localhost:11434`)
+- При передаче аргумента `OLLAMA_BASE_URL` прописывается в `apps/agent/.env`
+- Создан `run.sh`: валидация аргумента, запуск агента через docker compose
+- Оба скрипта исполняемые (`chmod +x`)
+- Обновлён `README.md`: добавлен раздел «Быстрый старт» с описанием параметра `setup.sh`
 
 ## Следующие шаги
 
-- Реализовать Python AI-агент на LangChain, использующий HTTP API сервиса книг
+- Нет
 
 ## Открытые вопросы
 

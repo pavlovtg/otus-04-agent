@@ -1,5 +1,8 @@
+name: otus-04-agent
+
 services:
   books-catalog:
+    container_name: books-catalog
     build:
       context: ../../apps/backend
       dockerfile: Dockerfile
@@ -8,3 +11,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - BooksCatalogLoader__BooksFilePath=books.json
+
+  agent:
+    container_name: agent
+    build:
+      context: ../../apps/agent
+      dockerfile: Dockerfile
+    environment:
+      - BACKEND_URL=http://books-catalog:5000
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    depends_on:
+      - books-catalog

@@ -27,28 +27,28 @@
     - Цель: экономия токенов контекста без потери смысла.
     - Создать правило для Cline 'prompts.md' с правилом формата промтов;
 3. Code style для C#:
-    - Сформировать файл 'csharp.md' с правилами code style для C# в папке '/docs/code-style';
-    - В файле 'csharp.md' зафиксировать базовые правила code style для C#;
-    - Создать правило для Cline 'csharp-code-style.md' с правилом code style для C#, в котором зафиксировано использовать правила из 'csharp.md' и что их надо использовать при написании кода на C#;
+    - Создать ADR-001 в `docs/adr/` с правилами code style для C#;
+    - Зафиксировать базовые правила code style для C#;
+    - Обновить индекс `docs/adr/README.md`;
     - Все создаваемые файлы максимально компактны: буллеты, одно предложение вместо абзаца, без вводных фраз;
     - Цель: экономия токенов контекста без потери смысла.
 4. Code style для Markdown:
-    - Сформировать файл 'markdown.md' с правилами code style для Markdown в папке '/docs/code-style';
-    - В файле 'markdown.md' зафиксировать базовые правила code style для Markdown;
-    - Зафиксировать в 'markdown.md' правила из следующей документации:
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md022.md
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md047.md
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md012.md
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md032.md
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md034.md
-        - https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md009.md
-    - Создать правило для Cline 'markdown-code-style.md' с правилом code style для Markdown, в котором зафиксировано использовать правила из 'markdown.md' и что их надо использовать при написании документов на Markdown;
+    - Создать ADR-002 в `docs/adr/` с правилами code style для Markdown;
+    - Зафиксировать базовые правила code style для Markdown;
+    - Зафиксировать правила из следующей документации:
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md022.md>
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md047.md>
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md012.md>
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md032.md>
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md034.md>
+        - <https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md009.md>
+    - Обновить индекс `docs/adr/README.md`;
     - Все создаваемые файлы максимально компактны: буллеты, одно предложение вместо абзаца, без вводных фраз;
     - Цель: экономия токенов контекста без потери смысла.
 5. Code style для Python:
-    - Сформировать файл 'python.md' с правилами code style для Python в папке '/docs/code-style';
-    - В файле 'python.md' зафиксировать базовые правила code style для Python;
-    - Создать правило для Cline 'python-code-style.md' с правилом code style для Python, в котором зафиксировано использовать правила из 'python.md' и что их надо использовать при написании кода на Python;
+    - Создать ADR-003 в `docs/adr/` с правилами code style для Python;
+    - Зафиксировать базовые правила code style для Python;
+    - Обновить индекс `docs/adr/README.md`;
     - Все создаваемые файлы максимально компактны: буллеты, одно предложение вместо абзаца, без вводных фраз;
     - Цель: экономия токенов контекста без потери смысла.
 6. Настроить правила Cline (`.clineignore`) так, чтобы агент игнорировал нерелевантные части проекта при обходе файловой системы и чтении контекста:

@@ -70,7 +70,7 @@
 - Загрузка при старте приложения через `IHostedService`.
 - Файл копируется в Docker-образ.
 
-### Тесты (ADR-005)
+### Тесты (ADR-008)
 
 - Unit-тесты: покрывают только `Domain/` слой, моки через интерфейсы.
 - Integration-тесты: HTTP-запросы через `WebApplicationFactory`, проверка статус-кодов и тела ответа.
@@ -87,7 +87,7 @@
 - Порт: `5000`.
 - Файл `books.json` копируется в образ командой `COPY`.
 
-### CI (ADR-006)
+### CI (ADR-009)
 
 - GitHub Actions, файл `.github/workflows/backend.yml`.
 - Триггеры: `push` и `pull_request`.
@@ -104,4 +104,4 @@
 
 ### Code style
 
-- Следовать правилам из `/docs/code-style/csharp.md`.
+- Следовать правилам из [ADR-001](../adr/ADR-001-csharp-code-style.md).
